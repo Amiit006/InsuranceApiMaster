@@ -5,28 +5,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cgi.insuranceapi.Repository.ClaimsRepository;
-import com.cgi.insuranceapi.model.Claims;
+import com.cgi.insuranceapi.Repository.ClaimRepository;
+import com.cgi.insuranceapi.model.Claim;
 
 @Service
-public class ClaimsServiceImpl implements ClaimsService{
+public class ClaimServiceImpl implements ClaimService{
 
 	@Autowired
-	ClaimsRepository claimsRepository;
+	ClaimRepository claimsRepository;
 	
 	
 	@Override
-	public List<Claims> getAllClaims(){
+	public List<Claim> getAllClaims(){
 		return claimsRepository.findAll();
 	}
 	
 	@Override
-	public void save(Claims claim) {
+	public void save(Claim claim) {
 		claimsRepository.save(claim);
 	}
 	
 	@Override
-	public Claims getClaimByClaimRef(String claimRef) {
+	public Claim getClaimByClaimRef(String claimRef) {
 //		return claimsRepository.getClaimRecordByClaimRef(claimRef);
 		return null;
 	}

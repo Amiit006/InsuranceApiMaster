@@ -35,7 +35,7 @@ public class InsuranceTypeController {
 		return new ResponseEntity<InsuranceType>(incTypeService.getInsuranceTypeById(incId), HttpStatus.OK);
 	}
 	
-	@GetMapping("/api/inctype/{incName}")
+	@GetMapping("/api/inctype/incname/{incName}")
 	public ResponseEntity<InsuranceType> getInsuranceTypeByName(@PathVariable String incName){
 		return new ResponseEntity<InsuranceType>(incTypeService.getInsuranceTypeByName(incName), HttpStatus.OK);
 	}

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "Claim")
-public class Claims {
+public class Claim {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,12 +28,12 @@ public class Claims {
 	private String ModifiedBy;
 	private Timestamp ModifiedDate;
 
-	public Claims() {
+	public Claim() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Claims(int policyId, String claimReference, 
+	public Claim(int policyId, String claimReference, 
 			String claimStatus, String createdBy, String modifiedBy) {
 		super();
 		PolicyId = policyId;

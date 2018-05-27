@@ -1,13 +1,15 @@
 package com.cgi.insuranceapi.Repository;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.cgi.insuranceapi.model.Claims;
+import com.cgi.insuranceapi.model.Claim;
 
-@Repository
-public interface ClaimsRepository extends JpaRepository<Claims, String>{
+@Transactional
+public interface ClaimRepository extends JpaRepository<Claim, String>{
 
 	/*@Query("Select * from Claim")
 	public List<Claims> getAllClaims();*/

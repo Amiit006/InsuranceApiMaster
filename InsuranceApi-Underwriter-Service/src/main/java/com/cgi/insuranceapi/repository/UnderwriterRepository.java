@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 import com.cgi.insuranceapi.model.Underwriter;
 
 @Repository
-public interface UnderwriterRepository extends JpaRepository<Underwriter, String>{
+public interface UnderwriterRepository extends JpaRepository<Underwriter, Integer>{
 
+	Underwriter findByUnderwriterName(String name);
+	
+	Underwriter findById(int Id);
 }

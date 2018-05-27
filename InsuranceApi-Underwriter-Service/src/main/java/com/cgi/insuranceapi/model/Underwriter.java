@@ -17,12 +17,12 @@ public class Underwriter {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int Id;
-	private String UnderwriterName;
-	private String CreatedBy;
-	private Timestamp CreatedDate;
-	private String ModifiedBy;
-	private Timestamp ModifiedDate;
+	private int id;
+	private String underwriterName;
+	private String createdBy;
+	private Timestamp createdDate;
+	private String modifiedBy;
+	private Timestamp modifiedDate;
 
 	public Underwriter() {
 		super();
@@ -31,50 +31,50 @@ public class Underwriter {
 
 	public Underwriter(String underwriterName, String createdBy, String modifiedBy) {
 		super();
-		UnderwriterName = underwriterName;
-		CreatedBy = createdBy;
-		CreatedDate = setCreatedDate();
-		ModifiedBy = modifiedBy;
-		ModifiedDate = setModifiedDate();
+		this.underwriterName = underwriterName;
+		this.createdBy = createdBy;
+		createdDate = setcreatedDate();
+		this.modifiedBy = modifiedBy;
+		modifiedDate = setmodifiedDate();
 	}
 
-	public String getUnderwriterName() {
-		return UnderwriterName;
+	public String getunderwriterName() {
+		return underwriterName;
 	}
 
-	public void setUnderwriterName(String underwriterName) {
-		UnderwriterName = underwriterName;
+	public void setunderwriterName(String underwriterName) {
+		this.underwriterName = underwriterName;
 	}
 
-	public String getCreatedBy() {
-		return CreatedBy;
+	public String getcreatedBy() {
+		return createdBy;
 	}
 
-	public void setCreatedBy(String createdBy) {
-		CreatedBy = createdBy;
+	public void setcreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
-	public Timestamp getCreatedDate() {
-		return CreatedDate;
+	public Timestamp getcreatedDate() {
+		return createdDate;
 	}
 
-	public Timestamp setCreatedDate() {
+	public Timestamp setcreatedDate() {
 		return new Timestamp(System.currentTimeMillis());
 	}
 
-	public String getModifiedBy() {
-		return ModifiedBy;
+	public String getmodifiedBy() {
+		return modifiedBy;
 	}
 
-	public void setModifiedBy(String modifiedBy) {
-		ModifiedBy = modifiedBy;
+	public void setmodifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
 	}
 
-	public Timestamp getModifiedDate() {
-		return ModifiedDate;
+	public Timestamp getmodifiedDate() {
+		return modifiedDate;
 	}
 
-	public Timestamp setModifiedDate() {
+	public Timestamp setmodifiedDate() {
 		return new Timestamp(System.currentTimeMillis());
 	}
 

@@ -17,6 +17,61 @@ public class UnderwriterServiceImpl implements UnderwriterService {
 	@Override
 	public List<Underwriter> getAllUnderwriter() {
 //		return uwRepo.findAll();
+		List<Underwriter> result = uwRepo.findAll();
+		if(result != null)
+			return result;
 		return null;
+	}
+	
+	@Override
+	public Underwriter getUnderwriterById(int id) {
+		Underwriter  result = uwRepo.findById(id);
+		if(result != null)
+			return result;
+		return null;
+	}
+	
+	@Override
+	public Underwriter getUnderwriterByName(String name) {
+		Underwriter result = uwRepo.findByUnderwriterName(name);
+		if(result != null)
+			return result;
+		return null;
+	}
+	
+	@Override
+	public Underwriter saveUnderwriter(Underwriter underwriter) {
+		Underwriter und = uwRepo.findByUnderwriterName(underwriter.getunderwriterName());
+		if(und != null)
+			return null;
+		else {
+			uwRepo.save(underwriter);
+			return underwriter;
+		}
+	}
+	
+	@Override
+	public Underwriter updateUnderwriter(int id, Underwriter underwriter) {
+		Underwriter und = uwRepo.findById(id);
+		if(und != null) {
+			und.setunderwriterName(underwriter.getunderwriterName());
+			und.setmodifiedBy(underwriter.getmodifiedBy());
+			und.setmodifiedDate();
+			uwRepo.save(und);
+			return und;
+		}
+		else 
+			return null;
+	}
+	
+	@Override
+	public Underwriter deleteUnderwriter(int id) {
+		Underwriter und = uwRepo.findById(id);
+		if(und != null) {
+			uwRepo.deleteById(id);
+			return und;
+		}
+		else 
+			return null;
 	}
 }

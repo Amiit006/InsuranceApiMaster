@@ -1,17 +1,19 @@
 package com.cgi.insuranceapi.repository;
 
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.cgi.insuranceapi.model.InsuranceType;
 
 @Repository
-public interface InsuranceTypeRepository extends JpaRepository<InsuranceType, String>{
-
+//public interface InsuranceTypeRepository extends org.springframework.data.repository.Repository<InsuranceType, Integer>{
+public interface InsuranceTypeRepository extends JpaRepository<InsuranceType, Integer>{
+	InsuranceType findByInsuranceTypeName(String InsuranceTypeName); 
 	
-	/*@Query("SELECT it FROM InsuranceType it where t.id = :id") 
-    InsuranceType getInsuranceTypeById(@Param("id") Long id);*/
-	
+	InsuranceType findById(int id);
 }
