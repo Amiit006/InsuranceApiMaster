@@ -11,7 +11,6 @@ import com.cgi.insuranceapi.aspect.LoggingAspect;
 
 @Configuration
 @EnableAspectJAutoProxy
-@EnableTransactionManagement
 @ComponentScan(basePackages = "com.cgi.insuranceapi")
 public class ApplicationContextConfig {
 

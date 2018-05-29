@@ -9,11 +9,13 @@ public interface PolicyService {
 
 	List<Policy> getAllPolicy();
 
-	Policy getPolicyByPolicyName(String policyName);
+	Policy getPolicyById(int id);
+	
+	Policy getPolicyByPolicyNumber(String policyNumber);
 
 	void save(Policy policy);
 
-	void updatePolicyDetails(Policy policy);
+	Policy updatePolicy(int id, Policy policy);
 
 	void deletePolicy(int policyId);
 

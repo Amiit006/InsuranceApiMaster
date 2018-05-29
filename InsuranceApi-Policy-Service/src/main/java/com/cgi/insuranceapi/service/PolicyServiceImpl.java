@@ -12,37 +12,65 @@ import com.cgi.insuranceapi.repository.PolicyRepository;
 public class PolicyServiceImpl implements PolicyService {
 	
 	@Autowired
-	PolicyRepository policyRepository;
-	
-	
+	PolicyRepository policyRepo;
+
 	@Override
-	public List<Policy> getAllPolicy(){
-		
-		return policyRepository.findAll();
-	}
-	
-	
-	@Override
-	public Policy getPolicyByPolicyName(String policyName) {
-//		return policyRepository.findOne(policyName);
+	public List<Policy> getAllPolicy() {
+		// TODO Auto-generated method stub
+		List<Policy> policyList = policyRepo.findAll();
+		if(policyList != null)
+			return policyList;
 		return null;
 	}
-	
-	
+
+	@Override
+	public Policy getPolicyById(int id) {
+		Policy policy = policyRepo.findById(id);
+		if(policy != null)
+			return policy;
+		return null;
+	}
+
+	@Override
+	public Policy getPolicyByPolicyNumber(String policyNumber) {
+		Policy policy = policyRepo.findByPolicyNumber(policyNumber);
+		if(policy != null)
+			return policy;
+		return null;
+	}
+
 	@Override
 	public void save(Policy policy) {
-		policyRepository.save(policy);
+		policyRepo.save(policy);
 	}
-	
-	
+
 	@Override
-	public void updatePolicyDetails(Policy policy) {
-		policyRepository.save(policy);
+	public Policy updatePolicy(int id, Policy policy) {
+		Policy p = policyRepo.findById(id) ;
+		if(p != null) {
+			p.setPolicyNumber(policy.getPolicyNumber());
+			p.setInsuranceTypeId(policy.getInsuranceTypeId());
+			p.setInsuredName(policy.getInsuredName());
+			p.setUnderwriterId(policy.getUnderwriterId());
+			p.setEffectiveDate(policy.getEffectiveDate());
+			p.setExpiryDate(policy.getExpiryDate());
+			p.setAmountInsured(policy.getAmountInsured());
+			p.setIsActive(policy.getIsActive());
+			p.setModifiedBy(policy.getModifiedBy());
+			p.setModifiedDate();
+			policyRepo.save(p);
+			return p;
+		}
+		return null;
 	}
-	
-	
+
 	@Override
 	public void deletePolicy(int policyId) {
-		policyRepository.deleteById("");
+		Policy p = policyRepo.findById(policyId) ;
+		if(p != null) {
+			policyRepo.deleteById(policyId);
+		}
 	}
+	
+	
 }

@@ -12,8 +12,8 @@ public class LoggingAspect {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 	
-	@Before("execution (* com.cgi.insuranceapi.controller.getAllPremium(..))")
-	public void logBeforeGetAllPremium(JoinPoint joinPoint) {
+	@Before("execution(* com.cgi.insuranceapi.controller.PremiumController.getAllPremium(..))")
+	public void logBeforegetAllInsuranceType(JoinPoint joinPoint) {
 		logger.info("============@Before==========");
 		logger.debug("Method Name : " + joinPoint.getSignature().getName());
 		logger.debug("*********************************");

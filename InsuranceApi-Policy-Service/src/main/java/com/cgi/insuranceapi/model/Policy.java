@@ -1,35 +1,36 @@
 package com.cgi.insuranceapi.model;
 
-import java.sql.Timestamp;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name = "policy")
+@Table(name = "Policy", uniqueConstraints = {@UniqueConstraint(columnNames={"policyNumber"})})
 public class Policy {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int Id;
-	private String PolicyNumber;
-	private int InsuranceTypeId;
-	private String InsuredName;
-	private int UnderwriterId;
-	private Timestamp EffectiveDate;
-	private Timestamp ExpiryDate;
-	private float AmountInsured;
-	private boolean IsActive;
-	private String CreatedBy;
-	private Timestamp CreatedDate;
-	private String ModifiedBy;
-	private Timestamp ModifiedDate;
+	private int id;
+	private String policyNumber;
+	private int insuranceTypeId;
+	private String insuredName;
+	private int underwriterId;
+	private LocalTime effectiveDate;
+	private LocalTime expiryDate;
+	private float amountInsured;
+	private boolean isActive;
+	private String createdBy;
+	private LocalTime createdDate;
+	private String modifiedBy;
+	private LocalTime modifiedDate;
 
 	public Policy() {
 		super();
@@ -37,117 +38,117 @@ public class Policy {
 	}
 
 	public Policy(String policyNumber, int insuranceTypeId, String insuredName, int underwriterId,
-			float amountInsured, boolean isActive, String createdBy,
+			LocalTime effectiveDate, LocalTime expiryDate, float amountInsured, boolean isActive, String createdBy,
 			String modifiedBy) {
 		super();
-		PolicyNumber = policyNumber;
-		InsuranceTypeId = insuranceTypeId;
-		InsuredName = insuredName;
-		UnderwriterId = underwriterId;
-		EffectiveDate = setEffectiveDate();
-		ExpiryDate = setExpiryDate();
-		AmountInsured = amountInsured;
-		IsActive = isActive;
-		CreatedBy = createdBy;
-		CreatedDate = setCreatedDate();
-		ModifiedBy = modifiedBy;
-		ModifiedDate = setModifiedDate();
+		this.policyNumber = policyNumber;
+		this.insuranceTypeId = insuranceTypeId;
+		this.insuredName = insuredName;
+		this.underwriterId = underwriterId;
+		this.effectiveDate = effectiveDate;
+		this.expiryDate = expiryDate;
+		this.amountInsured = amountInsured;
+		this.isActive = isActive;
+		this.createdBy = createdBy;
+		setCreatedDate();
+		this.modifiedBy = modifiedBy;
+		setModifiedDate();
 	}
 
 	public String getPolicyNumber() {
-		return PolicyNumber;
+		return policyNumber;
 	}
 
 	public void setPolicyNumber(String policyNumber) {
-		PolicyNumber = policyNumber;
+		this.policyNumber = policyNumber;
 	}
 
 	public int getInsuranceTypeId() {
-		return InsuranceTypeId;
+		return insuranceTypeId;
 	}
 
 	public void setInsuranceTypeId(int insuranceTypeId) {
-		InsuranceTypeId = insuranceTypeId;
+		this.insuranceTypeId = insuranceTypeId;
 	}
 
 	public String getInsuredName() {
-		return InsuredName;
+		return insuredName;
 	}
 
 	public void setInsuredName(String insuredName) {
-		InsuredName = insuredName;
+		this.insuredName = insuredName;
 	}
 
 	public int getUnderwriterId() {
-		return UnderwriterId;
+		return underwriterId;
 	}
 
 	public void setUnderwriterId(int underwriterId) {
-		UnderwriterId = underwriterId;
+		this.underwriterId = underwriterId;
 	}
 
-	public Timestamp getEffectiveDate() {
-		return EffectiveDate;
+	public LocalTime getEffectiveDate() {
+		return effectiveDate;
 	}
 
-	public Timestamp setEffectiveDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setEffectiveDate(LocalTime localTime) {
+		this.effectiveDate = localTime;
 	}
 
-	public Timestamp getExpiryDate() {
-		return ExpiryDate;
+	public LocalTime getExpiryDate() {
+		return expiryDate;
 	}
 
-	public Timestamp setExpiryDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setExpiryDate(LocalTime localTime) {
+		this.expiryDate = localTime;
 	}
 
 	public float getAmountInsured() {
-		return AmountInsured;
+		return amountInsured;
 	}
 
 	public void setAmountInsured(float amountInsured) {
-		AmountInsured = amountInsured;
+		this.amountInsured = amountInsured;
 	}
 
-	public boolean isIsActive() {
-		return IsActive;
+	public boolean getIsActive() {
+		return isActive;
 	}
 
 	public void setIsActive(boolean isActive) {
-		IsActive = isActive;
+		this.isActive = isActive;
 	}
 
 	public String getCreatedBy() {
-		return CreatedBy;
+		return createdBy;
 	}
 
 	public void setCreatedBy(String createdBy) {
-		CreatedBy = createdBy;
+		this.createdBy = createdBy;
 	}
 
-	public Timestamp getCreatedDate() {
-		return CreatedDate;
+	public LocalTime getCreatedDate() {
+		return createdDate;
 	}
 
-	public Timestamp setCreatedDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setCreatedDate() {
+		this.createdDate = LocalTime.now();
 	}
 
 	public String getModifiedBy() {
-		return ModifiedBy;
+		return modifiedBy;
 	}
 
 	public void setModifiedBy(String modifiedBy) {
-		ModifiedBy = modifiedBy;
+		this.modifiedBy = modifiedBy;
 	}
 
-	public Timestamp getModifiedDate() {
-		return ModifiedDate;
+	public LocalTime getModifiedDate() {
+		return modifiedDate;
 	}
 
-	public Timestamp setModifiedDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setModifiedDate() {
+		this.modifiedDate = LocalTime.now();
 	}
 
 }

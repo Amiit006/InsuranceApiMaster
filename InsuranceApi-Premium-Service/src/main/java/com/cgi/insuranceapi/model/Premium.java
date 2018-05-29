@@ -1,6 +1,6 @@
 package com.cgi.insuranceapi.model;
 
-import java.sql.Timestamp;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,15 +17,15 @@ public class Premium {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int Id;
-	private int PolicyId;
-	private Timestamp DueDate;
-	private float MinimumPayment;
-	private String PremiumStatus;
-	private String CreatedBy;
-	private Timestamp CreatedDate;
-	private String ModifiedBy;
-	private Timestamp ModifiedDate;
+	private int id;
+	private int policyId;
+	private LocalTime dueDate;
+	private float minimumPayment;
+	private String premiumStatus;
+	private String createdBy;
+	private LocalTime createdDate;
+	private String modifiedBy;
+	private LocalTime modifiedDate;
 
 	public Premium() {
 		super();
@@ -33,82 +33,82 @@ public class Premium {
 	}
 
 	
-	public Premium(int policyId, Timestamp dueDate, float minimumPayment, String premiumStatus, String createdBy,
-			Timestamp createdDate, String modifiedBy, Timestamp modifiedDate) {
+	public Premium(int policyId, LocalTime dueDate, float minimumPayment, String premiumStatus, String createdBy,
+			LocalTime createdDate, String modifiedBy, LocalTime modifiedDate) {
 		super();
-		PolicyId = policyId;
-		DueDate = dueDate;
-		MinimumPayment = minimumPayment;
-		PremiumStatus = premiumStatus;
-		CreatedBy = createdBy;
-		CreatedDate = createdDate;
-		ModifiedBy = modifiedBy;
-		ModifiedDate = modifiedDate;
+		this.policyId = policyId;
+		this.dueDate = dueDate;
+		this.minimumPayment = minimumPayment;
+		this.premiumStatus = premiumStatus;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.modifiedBy = modifiedBy;
+		this.modifiedDate = modifiedDate;
 	}
 
 	
-	public int getPolicyId() {
-		return PolicyId;
+	public int getpolicyId() {
+		return policyId;
 	}
 
-	public void setPolicyId(int policyId) {
-		PolicyId = policyId;
+	public void setpolicyId(int policyId) {
+		this.policyId = policyId;
 	}
 
-	public Timestamp getDueDate() {
-		return DueDate;
+	public LocalTime getdueDate() {
+		return dueDate;
 	}
 
-	public Timestamp setDueDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setdueDate() {
+		this.dueDate = LocalTime.now();
 	}
 
-	public float getMinimumPayment() {
-		return MinimumPayment;
+	public float getminimumPayment() {
+		return minimumPayment;
 	}
 
-	public void setMinimumPayment(float minimumPayment) {
-		MinimumPayment = minimumPayment;
+	public void setminimumPayment(float minimumPayment) {
+		this.minimumPayment = minimumPayment;
 	}
 
-	public String getPremiumStatus() {
-		return PremiumStatus;
+	public String getpremiumStatus() {
+		return premiumStatus;
 	}
 
-	public void setPremiumStatus(String premiumStatus) {
-		PremiumStatus = premiumStatus;
+	public void setpremiumStatus(String premiumStatus) {
+		this.premiumStatus = premiumStatus;
 	}
 
-	public String getCreatedBy() {
-		return CreatedBy;
+	public String getcreatedBy() {
+		return createdBy;
 	}
 
-	public void setCreatedBy(String createdBy) {
-		CreatedBy = createdBy;
+	public void setcreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
-	public Timestamp getCreatedDate() {
-		return CreatedDate;
+	public LocalTime getcreatedDate() {
+		return createdDate;
 	}
 
-	public Timestamp setCreatedDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setcreatedDate() {
+		this.createdDate = LocalTime.now();
 	}
 
-	public String getModifiedBy() {
-		return ModifiedBy;
+	public String getmodifiedBy() {
+		return modifiedBy;
 	}
 
-	public void setModifiedBy(String modifiedBy) {
-		ModifiedBy = modifiedBy;
+	public void setmodifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
 	}
 
-	public Timestamp getModifiedDate() {
-		return ModifiedDate;
+	public LocalTime getmodifiedDate() {
+		return modifiedDate;
 	}
 
-	public Timestamp setModifiedDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setmodifiedDate() {
+		this.modifiedDate = LocalTime.now();
 	}
 
 }

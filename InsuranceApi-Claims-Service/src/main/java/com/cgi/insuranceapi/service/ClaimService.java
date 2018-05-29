@@ -12,4 +12,12 @@ public interface ClaimService {
 
 	Claim getClaimByClaimRef(String claimRef);
 
+	Claim getClaimById(int id);
+
+	Claim getClaimByPolicyId(int id);
+
+	Claim updateClaim(int id, Claim claim);
+
+	void deleteClaim(int id);
+
 }

@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 import com.cgi.insuranceapi.model.Claim;
 
 @Transactional
-public interface ClaimRepository extends JpaRepository<Claim, String>{
+public interface ClaimRepository extends JpaRepository<Claim, Integer>{
 
-	/*@Query("Select * from Claim")
-	public List<Claims> getAllClaims();*/
+	Claim findById(int id);
 	
-	/*@Query(value = "Select c from Claim c where c.claim_reference = (?1)")
-	public Claims getClaimRecordByClaimRef(String claimRef);*/
+	Claim findByPolicyId(int id);
+	
+	Claim findByClaimReference(String string);
 }

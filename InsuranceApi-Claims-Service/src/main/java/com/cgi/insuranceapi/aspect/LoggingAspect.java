@@ -11,7 +11,7 @@ public class LoggingAspect {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 	
-	@Before("execution(* com.cgi.insuranceapi.controller.ClaimsController.getAllClaims(..))")
+	@Before("execution(* com.cgi.insuranceapi.controller.ClaimController.getAllClaims(..))")
 	public void logBeforeGetAllClaims(JoinPoint joinPoint) {
 
 		logger.info("============@Before==========");

@@ -1,6 +1,7 @@
 package com.cgi.insuranceapi.model;
 
 import java.sql.Timestamp;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,106 +18,115 @@ public class Claim {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
-	private int PolicyId;
-	private String ClaimReference;
-	private Timestamp ClaimDate;
-	private String ClaimStatus;
-	private Timestamp ApprovedDate;
-	private String CreatedBy;
-	private Timestamp CreatedDate;
-	private String ModifiedBy;
-	private Timestamp ModifiedDate;
+	private int id;
+	private int policyId;
+	private String claimReference;
+	private LocalTime claimDate;
+	private String claimStatus;
+	private LocalTime approvedDate;
+	private String createdBy;
+	private LocalTime createdDate;
+	private String modifiedBy;
+	private LocalTime modifiedDate;
 
 	public Claim() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Claim(int policyId, String claimReference, 
-			String claimStatus, String createdBy, String modifiedBy) {
+	public Claim(int id, int policyId, String claimReference, LocalTime claimDate,
+			String claimStatus, LocalTime approvedDate, String createdBy, String modifiedBy) {
 		super();
-		PolicyId = policyId;
-		ClaimReference = claimReference;
-		ClaimDate = setClaimDate();
-		ClaimStatus = claimStatus;
-		ApprovedDate = setApprovedDate();
-		CreatedBy = createdBy;
-		CreatedDate = setClaimDate();
-		ModifiedBy = modifiedBy;
-		ModifiedDate = setModifiedDate();
+		this.id = id;
+		this.policyId = policyId;
+		this.claimReference = claimReference;
+		this.claimDate = claimDate;
+		this.claimStatus = claimStatus;
+		this.approvedDate = approvedDate;
+		this.createdBy = createdBy;
+		setCreatedDate();
+		this.modifiedBy = modifiedBy;
+		setModifiedDate();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getPolicyId() {
-		return PolicyId;
+		return policyId;
 	}
 
 	public void setPolicyId(int policyId) {
-		PolicyId = policyId;
+		this.policyId = policyId;
 	}
 
 	public String getClaimReference() {
-		return ClaimReference;
+		return claimReference;
 	}
 
 	public void setClaimReference(String claimReference) {
-		ClaimReference = claimReference;
+		this.claimReference = claimReference;
 	}
 
-	public Timestamp getClaimDate() {
-		return ClaimDate;
+	public LocalTime getClaimDate() {
+		return claimDate;
 	}
 
-	public Timestamp setClaimDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setClaimDate(LocalTime localTime) {
+		this.claimDate = localTime;
 	}
 
 	public String getClaimStatus() {
-		return ClaimStatus;
+		return claimStatus;
 	}
 
 	public void setClaimStatus(String claimStatus) {
-		ClaimStatus = claimStatus;
+		this.claimStatus = claimStatus;
 	}
 
-	public Timestamp getApprovedDate() {
-		return ApprovedDate;
+	public LocalTime getApprovedDate() {
+		return approvedDate;
 	}
 
-	public Timestamp setApprovedDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setApprovedDate(LocalTime localTime) {
+		this.approvedDate = localTime;
 	}
 
 	public String getCreatedBy() {
-		return CreatedBy;
+		return createdBy;
 	}
 
 	public void setCreatedBy(String createdBy) {
-		CreatedBy = createdBy;
+		this.createdBy = createdBy;
 	}
 
-	public Timestamp getCreatedDate() {
-		return CreatedDate;
+	public LocalTime getCreatedDate() {
+		return createdDate;
 	}
 
-	public Timestamp setCreatedDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setCreatedDate() {
+		this.createdDate = LocalTime.now();
 	}
 
 	public String getModifiedBy() {
-		return ModifiedBy;
+		return modifiedBy;
 	}
 
 	public void setModifiedBy(String modifiedBy) {
-		ModifiedBy = modifiedBy;
+		this.modifiedBy = modifiedBy;
 	}
 
-	public Timestamp getModifiedDate() {
-		return ModifiedDate;
+	public LocalTime getModifiedDate() {
+		return modifiedDate;
 	}
 
-	public Timestamp setModifiedDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setModifiedDate() {
+		this.modifiedDate = LocalTime.now();
 	}
 
 }

@@ -10,4 +10,12 @@ public interface PremiumService {
 
 	void save(Premium premium);
 
+	Premium getPremiumById(int id);
+
+	Premium getPremiumByPolicyId(int id);
+
+	Premium updatePremium(int id, Premium premium);
+
+	void deletePremium(int id);
+
 }
