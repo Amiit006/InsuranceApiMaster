@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: InsuranceApi-InsuranceType-Service
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: amitsahoo
+Implementation-Vendor-Id: com.cgi
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/InsuranceApi-InsuranceType-Service
+Created-By: Maven Integration for Eclipse
+

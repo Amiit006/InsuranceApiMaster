@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.cgi.insuranceapi.InsuranceApiInsuranceTypeServiceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.349 s <<< FAILURE! - in com.cgi.insuranceapi.InsuranceApiInsuranceTypeServiceApplicationTests
+contextLoads(com.cgi.insuranceapi.InsuranceApiInsuranceTypeServiceApplicationTests)  Time elapsed: 0.005 s  <<< ERROR!
+java.lang.NoSuchMethodError: org.springframework.boot.builder.SpringApplicationBuilder.<init>([Ljava/lang/Object;)V
+

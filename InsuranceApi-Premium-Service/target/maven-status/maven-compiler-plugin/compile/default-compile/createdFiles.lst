@@ -1,0 +1,9 @@
+com\cgi\insuranceapi\aspect\LoggingAspect.class
+com\cgi\insuranceapi\config\SwaggerConfig.class
+com\cgi\insuranceapi\config\ApplicationContextConfig.class
+com\cgi\insuranceapi\model\Premium.class
+com\cgi\insuranceapi\repository\PremiumRepository.class
+com\cgi\insuranceapi\InsuranceApiPremiumServiceApplication.class
+com\cgi\insuranceapi\controller\PremiumController.class
+com\cgi\insuranceapi\service\PremiumService.class
+com\cgi\insuranceapi\service\PremiumServiceImpl.class
