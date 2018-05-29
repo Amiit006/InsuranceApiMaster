@@ -1,29 +1,31 @@
 package com.cgi.insuranceapi.model;
 
-import java.sql.Timestamp;
+import java.time.LocalTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name = "Insurance")
+@Table(name = "Insurance",  uniqueConstraints = {
+	    @UniqueConstraint(columnNames={"insuranceTypeName"})})
 public class InsuranceType {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	private int id;
 	private String insuranceTypeName;
 	private String createdBy;
-	private Timestamp createdDate;
+	private LocalTime createdDate;
 	private String modifiedBy;
-	private Timestamp modifiedDate;
+	private LocalTime modifiedDate;
 	
 
 	public InsuranceType() {
@@ -35,9 +37,9 @@ public class InsuranceType {
 		super();
 		this.insuranceTypeName = insuranceTypeName;
 		this.createdBy = createdBy;
-		createdDate = setcreatedDate();
+		setcreatedDate();
 		this.modifiedBy = modifiedBy;
-		modifiedDate = setmodifiedDate();
+		setmodifiedDate();
 	}
 
 	public String getinsuranceTypeName() {
@@ -56,12 +58,13 @@ public class InsuranceType {
 		this.createdBy = createdBy;
 	}
 
-	public Timestamp getcreatedDate() {
+	public LocalTime getcreatedDate() {
 		return createdDate;
 	}
 
-	public Timestamp setcreatedDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setcreatedDate() {
+		//return new Timestamp(System.currentTimeMillis());
+		this.createdDate = LocalTime.now();
 	}
 
 	public String getmodifiedBy() {
@@ -72,12 +75,13 @@ public class InsuranceType {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public Timestamp getmodifiedDate() {
+	public LocalTime getmodifiedDate() {
 		return modifiedDate;
 	}
 
-	public Timestamp setmodifiedDate() {
-		return new Timestamp(System.currentTimeMillis());
+	public void setmodifiedDate() {
+//		return new Timestamp(System.currentTimeMillis());
+		this.modifiedDate = LocalTime.now();
 	}
 
 }
