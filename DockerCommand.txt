@@ -1,0 +1,30 @@
+cd C:\AmitSahoo\InsuranceApi\InsuranceApiMaster\eureka-server
+cd C:\AmitSahoo\InsuranceApi\InsuranceApiMaster\InsuranceApi-Claims-Service
+cd C:\AmitSahoo\InsuranceApi\InsuranceApiMaster\InsuranceApi-InsuranceType-Service
+cd C:\AmitSahoo\InsuranceApi\InsuranceApiMaster\InsuranceApi-Policy-Service
+cd C:\AmitSahoo\InsuranceApi\InsuranceApiMaster\InsuranceApi-Premium-Service
+cd C:\AmitSahoo\InsuranceApi\InsuranceApiMaster\InsuranceApi-Underwriter-Service
+
+docker build -f Dockerfile -t eureka-server .
+docker build -f Dockerfile -t insuranceapi-claims-service .
+docker build -f Dockerfile -t insuranceapi-insurancetype-service .
+docker build -f Dockerfile -t insuranceapi-policy-service .
+docker build -f Dockerfile -t insuranceapi-premium-service .
+docker build -f Dockerfile -t insuranceapi-underwriter-service .
+
+docker run -p 8081:8081 insuranceapi-claims-service
+docker run -p 8082:8082 insuranceapi-insurancetype-service
+docker run -p 8083:8083 insuranceapi-policy-service
+docker run -p 8084:8084 insuranceapi-premium-service
+docker run -p 8085:8085 insuranceapi-underwriter-service
+
+docker build -f Dockerfile -t eureka-server .
+
+docker run -p 8090:8090 -t eureka-server
+
+docker rmi eureka-server
+
+docker stop $(docker ps -a -q)
+docker start $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+docker rmi $(docker images -a -q)

@@ -1,9 +1,9 @@
-com\cgi\insuranceapi\model\Underwriter.class
 com\cgi\insuranceapi\aspect\LoggingAspect.class
+com\cgi\insuranceapi\service\UnderwriterService.class
+com\cgi\insuranceapi\service\UnderwriterServiceImpl.class
+com\cgi\insuranceapi\model\Underwriter.class
 com\cgi\insuranceapi\config\SwaggerConfig.class
 com\cgi\insuranceapi\config\ApplicationContextConfig.class
 com\cgi\insuranceapi\InsuranceApiUnderwriterServiceApplication.class
 com\cgi\insuranceapi\repository\UnderwriterRepository.class
-com\cgi\insuranceapi\service\UnderwriterService.class
 com\cgi\insuranceapi\controller\UnderwriterController.class
-com\cgi\insuranceapi\service\UnderwriterServiceImpl.class

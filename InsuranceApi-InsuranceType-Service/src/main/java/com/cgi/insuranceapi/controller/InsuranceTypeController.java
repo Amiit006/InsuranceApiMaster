@@ -27,30 +27,82 @@ public class InsuranceTypeController {
 	
 	@GetMapping("/api/inctype")
 	public ResponseEntity<List<InsuranceType>> getAllInsuranceType(){
-		return new ResponseEntity<List<InsuranceType>>(incTypeService.getAllInsuranceType(), HttpStatus.OK);
+		try {
+			List<InsuranceType> allItemList = incTypeService.getAllInsuranceType();
+			if(allItemList.size() == 0) {
+				return new ResponseEntity<List<InsuranceType>>(allItemList, HttpStatus.OK);	
+			}
+			return new ResponseEntity<List<InsuranceType>>(HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<List<InsuranceType>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	@GetMapping("/api/inctype/{incId}")
 	public ResponseEntity<InsuranceType> getInsuranceTypeById(@PathVariable int incId){
-		return new ResponseEntity<InsuranceType>(incTypeService.getInsuranceTypeById(incId), HttpStatus.OK);
+		try {
+			InsuranceType it = incTypeService.getInsuranceTypeById(incId);
+			if(it != null)
+				return new ResponseEntity<InsuranceType>(it, HttpStatus.OK);
+			else
+				return new ResponseEntity<InsuranceType>(HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<InsuranceType>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	@GetMapping("/api/inctype/incname/{incName}")
 	public ResponseEntity<InsuranceType> getInsuranceTypeByName(@PathVariable String incName){
-		return new ResponseEntity<InsuranceType>(incTypeService.getInsuranceTypeByName(incName), HttpStatus.OK);
+		try {
+			InsuranceType it = incTypeService.getInsuranceTypeByName(incName);
+			if(it != null)
+				return new ResponseEntity<InsuranceType>(it, HttpStatus.OK);
+			else
+				return new ResponseEntity<InsuranceType>(HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<InsuranceType>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	@PostMapping("/api/inctype")
 	public ResponseEntity<String> saveInsuranceType(@RequestBody InsuranceType insuranceType){
-		return new ResponseEntity<String>(incTypeService.saveInsuranceType(insuranceType), HttpStatus.CREATED);
+		try {
+			return new ResponseEntity<String>(incTypeService.saveInsuranceType(insuranceType), HttpStatus.CREATED);	
+		}catch(Exception ex) {
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
+	
 	@PutMapping("/api/inctype/{id}")
-	public ResponseEntity<String> updateInsuranceType(@PathVariable int id, @RequestBody InsuranceType insuranceType){
-		return new ResponseEntity<String>(incTypeService.updateInsuranceType(id, insuranceType), HttpStatus.OK);
+	public ResponseEntity<InsuranceType> updateInsuranceType(@PathVariable int id, @RequestBody InsuranceType insuranceType){
+		try {
+			InsuranceType it = incTypeService.getInsuranceTypeById(id);
+			if(it != null) {
+				return new ResponseEntity<InsuranceType>(incTypeService.updateInsuranceType(id, insuranceType), HttpStatus.OK);	
+			}
+			else {
+				return new ResponseEntity<InsuranceType>(HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<InsuranceType>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
+	
 	@DeleteMapping("/api/inctype/{id}")
 	public ResponseEntity<String> deleteInsuranceType(@PathVariable int id){
-		return new ResponseEntity<String>(incTypeService.deleteInsuranceType(id), HttpStatus.OK);
+		try {
+			InsuranceType it = incTypeService.getInsuranceTypeById(id);
+			if(it != null) {
+				return new ResponseEntity<String>(incTypeService.deleteInsuranceType(id), HttpStatus.OK);
+			}
+			else {
+				return new ResponseEntity<String>("Item Not found", HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	

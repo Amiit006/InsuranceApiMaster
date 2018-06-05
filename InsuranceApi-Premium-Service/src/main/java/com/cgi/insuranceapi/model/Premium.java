@@ -1,6 +1,6 @@
 package com.cgi.insuranceapi.model;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,13 +21,15 @@ public class Premium {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private int policyId;
-	private LocalTime dueDate;
+	private LocalDateTime dueDate;
 	private float minimumPayment;
 	private String premiumStatus;
 	private String createdBy;
-	private LocalTime createdDate;
+	@CreationTimestamp
+	private LocalDateTime createdDate;
 	private String modifiedBy;
-	private LocalTime modifiedDate;
+	@UpdateTimestamp
+	private LocalDateTime modifiedDate;
 
 	public Premium() {
 		super();
@@ -33,17 +37,15 @@ public class Premium {
 	}
 
 	
-	public Premium(int policyId, LocalTime dueDate, float minimumPayment, String premiumStatus, String createdBy,
-			LocalTime createdDate, String modifiedBy, LocalTime modifiedDate) {
+	public Premium(int policyId, LocalDateTime dueDate, float minimumPayment, String premiumStatus, String createdBy,
+			String modifiedBy) {
 		super();
 		this.policyId = policyId;
 		this.dueDate = dueDate;
 		this.minimumPayment = minimumPayment;
 		this.premiumStatus = premiumStatus;
 		this.createdBy = createdBy;
-		this.createdDate = createdDate;
 		this.modifiedBy = modifiedBy;
-		this.modifiedDate = modifiedDate;
 	}
 
 	
@@ -55,12 +57,12 @@ public class Premium {
 		this.policyId = policyId;
 	}
 
-	public LocalTime getdueDate() {
+	public LocalDateTime getdueDate() {
 		return dueDate;
 	}
 
-	public void setdueDate() {
-		this.dueDate = LocalTime.now();
+	public void setdueDate(LocalDateTime duedate) {
+		this.dueDate = duedate;
 	}
 
 	public float getminimumPayment() {
@@ -87,13 +89,13 @@ public class Premium {
 		this.createdBy = createdBy;
 	}
 
-	public LocalTime getcreatedDate() {
+	public LocalDateTime getcreatedDate() {
 		return createdDate;
 	}
 
-	public void setcreatedDate() {
-		this.createdDate = LocalTime.now();
-	}
+	/*public void setcreatedDate() {
+		this.createdDate = LocalDateTime.now();
+	}*/
 
 	public String getmodifiedBy() {
 		return modifiedBy;
@@ -103,12 +105,12 @@ public class Premium {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public LocalTime getmodifiedDate() {
+	public LocalDateTime getmodifiedDate() {
 		return modifiedDate;
 	}
 
-	public void setmodifiedDate() {
-		this.modifiedDate = LocalTime.now();
-	}
+	/*public void setmodifiedDate() {
+		this.modifiedDate = LocalDateTime.now();
+	}*/
 
 }

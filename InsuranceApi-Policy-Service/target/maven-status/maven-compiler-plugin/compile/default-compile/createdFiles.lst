@@ -1,0 +1,9 @@
+com\cgi\insuranceapi\service\PolicyService.class
+com\cgi\insuranceapi\controller\PolicyController.class
+com\cgi\insuranceapi\repository\PolicyRepository.class
+com\cgi\insuranceapi\service\PolicyServiceImpl.class
+com\cgi\insuranceapi\aspectlogging\LoggingAspect.class
+com\cgi\insuranceapi\model\Policy.class
+com\cgi\insuranceapi\config\SwaggerConfig.class
+com\cgi\insuranceapi\config\ApplicationContextConfig.class
+com\cgi\insuranceapi\InsuranceApiPolicyServiceApplication.class

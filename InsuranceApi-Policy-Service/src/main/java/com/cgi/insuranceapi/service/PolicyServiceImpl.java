@@ -15,7 +15,7 @@ public class PolicyServiceImpl implements PolicyService {
 	PolicyRepository policyRepo;
 
 	@Override
-	public List<Policy> getAllPolicy() {
+	public List<Policy> getAllPolicy() throws Exception{
 		// TODO Auto-generated method stub
 		List<Policy> policyList = policyRepo.findAll();
 		if(policyList != null)
@@ -24,7 +24,7 @@ public class PolicyServiceImpl implements PolicyService {
 	}
 
 	@Override
-	public Policy getPolicyById(int id) {
+	public Policy getPolicyById(int id)  throws Exception{
 		Policy policy = policyRepo.findById(id);
 		if(policy != null)
 			return policy;
@@ -32,7 +32,7 @@ public class PolicyServiceImpl implements PolicyService {
 	}
 
 	@Override
-	public Policy getPolicyByPolicyNumber(String policyNumber) {
+	public Policy getPolicyByPolicyNumber(String policyNumber)  throws Exception{
 		Policy policy = policyRepo.findByPolicyNumber(policyNumber);
 		if(policy != null)
 			return policy;
@@ -40,12 +40,12 @@ public class PolicyServiceImpl implements PolicyService {
 	}
 
 	@Override
-	public void save(Policy policy) {
+	public void save(Policy policy)  throws Exception{
 		policyRepo.save(policy);
 	}
 
 	@Override
-	public Policy updatePolicy(int id, Policy policy) {
+	public Policy updatePolicy(int id, Policy policy)  throws Exception{
 		Policy p = policyRepo.findById(id) ;
 		if(p != null) {
 			p.setPolicyNumber(policy.getPolicyNumber());
@@ -57,7 +57,6 @@ public class PolicyServiceImpl implements PolicyService {
 			p.setAmountInsured(policy.getAmountInsured());
 			p.setIsActive(policy.getIsActive());
 			p.setModifiedBy(policy.getModifiedBy());
-			p.setModifiedDate();
 			policyRepo.save(p);
 			return p;
 		}
@@ -65,7 +64,7 @@ public class PolicyServiceImpl implements PolicyService {
 	}
 
 	@Override
-	public void deletePolicy(int policyId) {
+	public void deletePolicy(int policyId)  throws Exception{
 		Policy p = policyRepo.findById(policyId) ;
 		if(p != null) {
 			policyRepo.deleteById(policyId);

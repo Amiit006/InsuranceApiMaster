@@ -15,18 +15,30 @@ public class PremiumServiceImpl implements PremiumService {
 	PremiumRepository premiumRepo;
 
 	@Override
-	public List<Premium> getAllPremium() {
-		return premiumRepo.findAll();
+	public List<Premium> getAllPremium() throws Exception {
+		List<Premium> premmiumList = premiumRepo.findAll();
+		if (premmiumList.size() > 0) {
+			return premmiumList;
+		}
+		return null;
 	}
 
 	@Override
-	public Premium getPremiumById(int id) {
-		return premiumRepo.findById(id);
+	public Premium getPremiumById(int id) throws Exception{
+		Premium p = premiumRepo.findById(id);
+		if (p != null)
+			return p;
+		else
+			return null;
 	}
 
 	@Override
-	public Premium getPremiumByPolicyId(int id) {
-		return premiumRepo.findByPolicyId(id);
+	public Premium getPremiumByPolicyId(int id) throws Exception{
+		Premium p = premiumRepo.findByPolicyId(id);
+		if (p != null)
+			return p;
+		else
+			return null; 
 	}
 
 	@Override
@@ -35,13 +47,12 @@ public class PremiumServiceImpl implements PremiumService {
 	}
 
 	@Override
-	public Premium updatePremium(int id, Premium premium) {
+	public Premium updatePremium(int id, Premium premium) throws Exception{
 		Premium p = premiumRepo.findById(id);
-		if(p != null ) {
-			p.setdueDate();
+		if (p != null) {
+			p.setdueDate(premium.getdueDate());
 			p.setminimumPayment(premium.getminimumPayment());
 			p.setmodifiedBy(premium.getmodifiedBy());
-			p.setmodifiedDate();
 			p.setpolicyId(premium.getpolicyId());
 			p.setpremiumStatus(premium.getpremiumStatus());
 			premiumRepo.save(p);
@@ -51,8 +62,10 @@ public class PremiumServiceImpl implements PremiumService {
 	}
 
 	@Override
-	public void deletePremium(int id) {
-		premiumRepo.deleteById(id);
+	public void deletePremium(int id) throws Exception{
+		Premium p = premiumRepo.findById(id);
+		if(p != null)
+			premiumRepo.deleteById(id);
 	}
 
 }

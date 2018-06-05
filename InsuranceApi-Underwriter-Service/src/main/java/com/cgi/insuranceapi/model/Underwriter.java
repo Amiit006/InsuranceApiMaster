@@ -1,6 +1,6 @@
 package com.cgi.insuranceapi.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,62 +22,71 @@ public class Underwriter {
 	private int id;
 	private String underwriterName;
 	private String createdBy;
-	private Timestamp createdDate;
+	@CreationTimestamp
+	private LocalDateTime createdDate;
 	private String modifiedBy;
-	private Timestamp modifiedDate;
+	@UpdateTimestamp
+	private LocalDateTime modifiedDate;
 
 	public Underwriter() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Underwriter(String underwriterName, String createdBy, String modifiedBy) {
 		super();
 		this.underwriterName = underwriterName;
 		this.createdBy = createdBy;
-		createdDate = setcreatedDate();
 		this.modifiedBy = modifiedBy;
-		modifiedDate = setmodifiedDate();
 	}
 
-	public String getunderwriterName() {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getUnderwriterName() {
 		return underwriterName;
 	}
 
-	public void setunderwriterName(String underwriterName) {
+	public void setUnderwriterName(String underwriterName) {
 		this.underwriterName = underwriterName;
 	}
 
-	public String getcreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setcreatedBy(String createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
-	public Timestamp getcreatedDate() {
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
 
-	public Timestamp setcreatedDate() {
-		return new Timestamp(System.currentTimeMillis());
-	}
+	/*public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}*/
 
-	public String getmodifiedBy() {
+	public String getModifiedBy() {
 		return modifiedBy;
 	}
 
-	public void setmodifiedBy(String modifiedBy) {
+	public void setModifiedBy(String modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public Timestamp getmodifiedDate() {
+	public LocalDateTime getModifiedDate() {
 		return modifiedDate;
 	}
 
-	public Timestamp setmodifiedDate() {
-		return new Timestamp(System.currentTimeMillis());
-	}
+	/*public void setModifiedDate(LocalDateTime modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}*/
+
+	
 
 }

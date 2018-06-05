@@ -17,14 +17,13 @@ public class InsuranceTypeServiceImpl implements InsuranceTypeService {
 	
 	
 	@Override
-	public List<InsuranceType> getAllInsuranceType(){
+	public List<InsuranceType> getAllInsuranceType() throws Exception{
 		return incTypeRepo.findAll();
-//		return null;
 	}
 	
 	
 	@Override
-	public InsuranceType getInsuranceTypeById(int id) {
+	public InsuranceType getInsuranceTypeById(int id) throws Exception {
 		InsuranceType it = incTypeRepo.findById(id);
 		if (it != null) {
 			return it;
@@ -34,7 +33,7 @@ public class InsuranceTypeServiceImpl implements InsuranceTypeService {
 	}
 	
 	@Override
-	public InsuranceType getInsuranceTypeByName(String name){
+	public InsuranceType getInsuranceTypeByName(String name) throws Exception{
 		InsuranceType i = incTypeRepo.findByInsuranceTypeName(name);
 		if(i == null)
 			return null;
@@ -43,7 +42,7 @@ public class InsuranceTypeServiceImpl implements InsuranceTypeService {
 	
 	
 	@Override
-	public String saveInsuranceType(InsuranceType insuranceType){
+	public String saveInsuranceType(InsuranceType insuranceType) throws Exception{
 		InsuranceType i = incTypeRepo.save(insuranceType);
 		if(i != null)
 			return "Item Created";
@@ -53,25 +52,22 @@ public class InsuranceTypeServiceImpl implements InsuranceTypeService {
 	
 	
 	@Override
-	public String updateInsuranceType(int id, InsuranceType insuranceType){
+	public InsuranceType updateInsuranceType(int id, InsuranceType insuranceType) throws Exception{
 		InsuranceType it = incTypeRepo.findById(id);
 		
 		if(it == null)
-			return "No Item found.";
+			return null;
 		else {
-			it.setinsuranceTypeName(insuranceType.getinsuranceTypeName());
-			it.setmodifiedBy(insuranceType.getmodifiedBy());
-			it.setmodifiedDate();
+			it.setInsuranceTypeName(insuranceType.getInsuranceTypeName());
+			it.setModifiedBy(insuranceType.getModifiedBy());
 			incTypeRepo.save(it);
-			return "Item Updated";	
+			return insuranceType;	
 		}
-		
-		
 	}
 	
 	
 	@Override
-	public String deleteInsuranceType(int id) {
+	public String deleteInsuranceType(int id) throws Exception{
 		InsuranceType it = incTypeRepo.findById(id);
 		if(it == null)
 			return "No Item found.";

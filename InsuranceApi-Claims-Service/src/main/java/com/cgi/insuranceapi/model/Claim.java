@@ -1,7 +1,6 @@
 package com.cgi.insuranceapi.model;
 
-import java.sql.Timestamp;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,21 +22,23 @@ public class Claim {
 	private int id;
 	private int policyId;
 	private String claimReference;
-	private LocalTime claimDate;
+	private LocalDateTime claimDate;
 	private String claimStatus;
-	private LocalTime approvedDate;
+	private LocalDateTime approvedDate;
 	private String createdBy;
-	private LocalTime createdDate;
+	@CreationTimestamp
+	private LocalDateTime createdDate;
 	private String modifiedBy;
-	private LocalTime modifiedDate;
+	@UpdateTimestamp
+	private LocalDateTime modifiedDate;
 
 	public Claim() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Claim(int id, int policyId, String claimReference, LocalTime claimDate,
-			String claimStatus, LocalTime approvedDate, String createdBy, String modifiedBy) {
+	public Claim(int id, int policyId, String claimReference, LocalDateTime claimDate,
+			String claimStatus, LocalDateTime approvedDate, String createdBy, String modifiedBy) {
 		super();
 		this.id = id;
 		this.policyId = policyId;
@@ -44,9 +47,7 @@ public class Claim {
 		this.claimStatus = claimStatus;
 		this.approvedDate = approvedDate;
 		this.createdBy = createdBy;
-		setCreatedDate();
 		this.modifiedBy = modifiedBy;
-		setModifiedDate();
 	}
 
 	public int getId() {
@@ -73,12 +74,12 @@ public class Claim {
 		this.claimReference = claimReference;
 	}
 
-	public LocalTime getClaimDate() {
+	public LocalDateTime getClaimDate() {
 		return claimDate;
 	}
 
-	public void setClaimDate(LocalTime localTime) {
-		this.claimDate = localTime;
+	public void setClaimDate(LocalDateTime LocalDateTime) {
+		this.claimDate = LocalDateTime;
 	}
 
 	public String getClaimStatus() {
@@ -89,12 +90,12 @@ public class Claim {
 		this.claimStatus = claimStatus;
 	}
 
-	public LocalTime getApprovedDate() {
+	public LocalDateTime getApprovedDate() {
 		return approvedDate;
 	}
 
-	public void setApprovedDate(LocalTime localTime) {
-		this.approvedDate = localTime;
+	public void setApprovedDate(LocalDateTime LocalDateTime) {
+		this.approvedDate = LocalDateTime;
 	}
 
 	public String getCreatedBy() {
@@ -105,13 +106,13 @@ public class Claim {
 		this.createdBy = createdBy;
 	}
 
-	public LocalTime getCreatedDate() {
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate() {
-		this.createdDate = LocalTime.now();
-	}
+	/*public void setCreatedDate(LocalDateTime dt) {
+		this.createdDate = LocalDateTime.now();
+	}*/
 
 	public String getModifiedBy() {
 		return modifiedBy;
@@ -121,12 +122,12 @@ public class Claim {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public LocalTime getModifiedDate() {
+	public LocalDateTime getModifiedDate() {
 		return modifiedDate;
 	}
 
-	public void setModifiedDate() {
-		this.modifiedDate = LocalTime.now();
-	}
+	/*public void setModifiedDate(LocalDateTime dt) {
+		this.modifiedDate = LocalDateTime.now();
+	}*/
 
 }

@@ -15,8 +15,7 @@ public class UnderwriterServiceImpl implements UnderwriterService {
 	UnderwriterRepository uwRepo;
 
 	@Override
-	public List<Underwriter> getAllUnderwriter() {
-//		return uwRepo.findAll();
+	public List<Underwriter> getAllUnderwriter() throws Exception{
 		List<Underwriter> result = uwRepo.findAll();
 		if(result != null)
 			return result;
@@ -24,7 +23,7 @@ public class UnderwriterServiceImpl implements UnderwriterService {
 	}
 	
 	@Override
-	public Underwriter getUnderwriterById(int id) {
+	public Underwriter getUnderwriterById(int id) throws Exception{
 		Underwriter  result = uwRepo.findById(id);
 		if(result != null)
 			return result;
@@ -32,7 +31,7 @@ public class UnderwriterServiceImpl implements UnderwriterService {
 	}
 	
 	@Override
-	public Underwriter getUnderwriterByName(String name) {
+	public Underwriter getUnderwriterByName(String name) throws Exception{
 		Underwriter result = uwRepo.findByUnderwriterName(name);
 		if(result != null)
 			return result;
@@ -40,8 +39,8 @@ public class UnderwriterServiceImpl implements UnderwriterService {
 	}
 	
 	@Override
-	public Underwriter saveUnderwriter(Underwriter underwriter) {
-		Underwriter und = uwRepo.findByUnderwriterName(underwriter.getunderwriterName());
+	public Underwriter saveUnderwriter(Underwriter underwriter) throws Exception{
+		Underwriter und = uwRepo.findByUnderwriterName(underwriter.getUnderwriterName());
 		if(und != null)
 			return null;
 		else {
@@ -51,12 +50,11 @@ public class UnderwriterServiceImpl implements UnderwriterService {
 	}
 	
 	@Override
-	public Underwriter updateUnderwriter(int id, Underwriter underwriter) {
+	public Underwriter updateUnderwriter(int id, Underwriter underwriter) throws Exception{
 		Underwriter und = uwRepo.findById(id);
 		if(und != null) {
-			und.setunderwriterName(underwriter.getunderwriterName());
-			und.setmodifiedBy(underwriter.getmodifiedBy());
-			und.setmodifiedDate();
+			und.setUnderwriterName(underwriter.getUnderwriterName());
+			und.setModifiedBy(underwriter.getModifiedBy());
 			uwRepo.save(und);
 			return und;
 		}
@@ -65,13 +63,7 @@ public class UnderwriterServiceImpl implements UnderwriterService {
 	}
 	
 	@Override
-	public Underwriter deleteUnderwriter(int id) {
-		Underwriter und = uwRepo.findById(id);
-		if(und != null) {
-			uwRepo.deleteById(id);
-			return und;
-		}
-		else 
-			return null;
+	public void deleteUnderwriter(int id) throws Exception{
+		uwRepo.deleteById(id);
 	}
 }

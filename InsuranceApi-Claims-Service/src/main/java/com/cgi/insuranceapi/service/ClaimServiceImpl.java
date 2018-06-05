@@ -23,6 +23,7 @@ public class ClaimServiceImpl implements ClaimService{
 	@Override
 	public Claim getClaimById(int id){
 		Claim c = claimRepo.findById(id);
+		
 		if(c != null)
 			return c;
 		return null;

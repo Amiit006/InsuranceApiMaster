@@ -6,16 +6,16 @@ import com.cgi.insuranceapi.model.Premium;
 
 public interface PremiumService {
 
-	List<Premium> getAllPremium();
+	List<Premium> getAllPremium() throws Exception;
 
-	void save(Premium premium);
+	void save(Premium premium) throws Exception;
 
-	Premium getPremiumById(int id);
+	Premium getPremiumById(int id) throws Exception;
 
-	Premium getPremiumByPolicyId(int id);
+	Premium getPremiumByPolicyId(int id) throws Exception;
 
-	Premium updatePremium(int id, Premium premium);
+	Premium updatePremium(int id, Premium premium) throws Exception;
 
-	void deletePremium(int id);
+	void deletePremium(int id) throws Exception;
 
 }

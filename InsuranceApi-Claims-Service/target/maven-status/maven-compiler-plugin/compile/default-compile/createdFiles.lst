@@ -1,0 +1,9 @@
+com\cgi\insuranceapi\config\ApplicatonContextConfig.class
+com\cgi\insuranceapi\controller\ClaimController.class
+com\cgi\insuranceapi\aspect\LoggingAspect.class
+com\cgi\insuranceapi\InsuranceApiClaimsServiceApplication.class
+com\cgi\insuranceapi\service\ClaimServiceImpl.class
+com\cgi\insuranceapi\config\SwaggerConfig.class
+com\cgi\insuranceapi\model\Claim.class
+com\cgi\insuranceapi\service\ClaimService.class
+com\cgi\insuranceapi\Repository\ClaimRepository.class

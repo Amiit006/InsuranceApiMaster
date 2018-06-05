@@ -6,15 +6,15 @@ import com.cgi.insuranceapi.model.Underwriter;
 
 public interface UnderwriterService {
 
-	List<Underwriter> getAllUnderwriter();
+	List<Underwriter> getAllUnderwriter() throws Exception;
 
-	Underwriter getUnderwriterById(int id);
+	Underwriter getUnderwriterById(int id) throws Exception;
 
-	Underwriter deleteUnderwriter(int id);
+	void deleteUnderwriter(int id) throws Exception;
 
-	Underwriter updateUnderwriter(int id, Underwriter underwriter);
+	Underwriter updateUnderwriter(int id, Underwriter underwriter) throws Exception;
 
-	Underwriter saveUnderwriter(Underwriter underwriter);
+	Underwriter saveUnderwriter(Underwriter underwriter) throws Exception;
 
-	Underwriter getUnderwriterByName(String name);
+	Underwriter getUnderwriterByName(String name) throws Exception;
 }

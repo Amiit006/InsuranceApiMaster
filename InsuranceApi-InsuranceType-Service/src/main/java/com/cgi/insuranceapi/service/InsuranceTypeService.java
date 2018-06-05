@@ -7,16 +7,16 @@ import com.cgi.insuranceapi.model.InsuranceType;
 
 public interface InsuranceTypeService {
 
-	List<InsuranceType> getAllInsuranceType();
+	List<InsuranceType> getAllInsuranceType() throws Exception;
 
-	InsuranceType getInsuranceTypeById(int id);
+	InsuranceType getInsuranceTypeById(int id) throws Exception;
 
-	InsuranceType getInsuranceTypeByName(String name);
+	InsuranceType getInsuranceTypeByName(String name) throws Exception;
 
-	String saveInsuranceType(InsuranceType insuranceType);
+	String saveInsuranceType(InsuranceType insuranceType) throws Exception;
 
-	String updateInsuranceType(int id, InsuranceType insuranceType);
+	InsuranceType updateInsuranceType(int id, InsuranceType insuranceType) throws Exception;
 
-	String deleteInsuranceType(int id);
+	String deleteInsuranceType(int id) throws Exception;
 
 }

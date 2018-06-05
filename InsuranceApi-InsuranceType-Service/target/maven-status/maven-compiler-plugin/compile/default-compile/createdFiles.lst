@@ -1,9 +1,9 @@
+com\cgi\insuranceapi\aspect\LoggingAspect.class
+com\cgi\insuranceapi\service\InsuranceTypeService.class
+com\cgi\insuranceapi\InsuranceApiInsuranceTypeServiceApplication.class
 com\cgi\insuranceapi\service\InsuranceTypeServiceImpl.class
 com\cgi\insuranceapi\controller\InsuranceTypeController.class
-com\cgi\insuranceapi\aspect\LoggingAspect.class
 com\cgi\insuranceapi\config\SwaggerConfig.class
-com\cgi\insuranceapi\service\InsuranceTypeService.class
 com\cgi\insuranceapi\config\ApplicationContextConfig.class
-com\cgi\insuranceapi\InsuranceApiInsuranceTypeServiceApplication.class
 com\cgi\insuranceapi\model\InsuranceType.class
 com\cgi\insuranceapi\repository\InsuranceTypeRepository.class

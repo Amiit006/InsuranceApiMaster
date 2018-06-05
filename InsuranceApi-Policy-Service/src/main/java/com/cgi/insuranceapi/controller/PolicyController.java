@@ -24,52 +24,87 @@ public class PolicyController {
 	
 	@GetMapping("/api/policy")
 	public ResponseEntity<List<Policy>> getAllPolicy(){
-		return new ResponseEntity<List<Policy>>(policyService.getAllPolicy(), HttpStatus.OK);
+		try {
+			List<Policy> policyList = policyService.getAllPolicy();
+			if(policyList.size() >0)
+				return new ResponseEntity<List<Policy>>(policyList, HttpStatus.OK);
+			else 
+				return new ResponseEntity<List<Policy>>(HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return new ResponseEntity<List<Policy>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	@GetMapping("/api/policy/{id}")
 	public ResponseEntity<Policy> getPolicyById(@PathVariable int id){
-		Policy p = policyService.getPolicyById(id);
-		if(p != null)
-			return new ResponseEntity<Policy>(p, HttpStatus.OK);
-		else 
-			return new ResponseEntity<Policy>(HttpStatus.NOT_FOUND);
+		try {
+			Policy p = policyService.getPolicyById(id);
+			if(p != null)
+				return new ResponseEntity<Policy>(p, HttpStatus.OK);
+			else 
+				return new ResponseEntity<Policy>(HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<Policy>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	@GetMapping("/api/policy/name/{name}")
 	public ResponseEntity<Policy> getPolicyByPolicyNumber(@PathVariable String name){
-		Policy p = policyService.getPolicyByPolicyNumber(name);
-		if(p != null)
-			return new ResponseEntity<Policy>(p, HttpStatus.OK);
-		else 
-			return new ResponseEntity<Policy>(HttpStatus.NOT_FOUND);
+		try {
+			Policy p = policyService.getPolicyByPolicyNumber(name);
+			if(p != null)
+				return new ResponseEntity<Policy>(p, HttpStatus.OK);
+			else 
+				return new ResponseEntity<Policy>(HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<Policy>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	@PostMapping("/api/policy")
-	public ResponseEntity<String> savePolicyByPolicyNumber(@RequestBody Policy policy){
-		policyService.save(policy);
-		return new ResponseEntity<String>("Created Policy", HttpStatus.CREATED);
+	public ResponseEntity<Policy> savePolicyByPolicyNumber(@RequestBody Policy policy){
+		try {
+			Policy p = policyService.getPolicyByPolicyNumber(policy.getPolicyNumber());
+			if(p == null) {
+				policyService.save(policy);
+				return new ResponseEntity<Policy>(policy, HttpStatus.CREATED);	
+			}
+			else
+				return new ResponseEntity<Policy>(policy, HttpStatus.CONFLICT);
+		} catch (Exception e) {
+			return new ResponseEntity<Policy>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
 	
 	@PutMapping("/api/policy/{id}")
 	public ResponseEntity<Policy> updatePolicyByPolicyNumber(@PathVariable int id, @RequestBody Policy policy){
-		Policy p = policyService.getPolicyById(id);
-		if(p != null)
-			return new ResponseEntity<Policy>(p, HttpStatus.OK);
-		else
-			return new ResponseEntity<Policy>(HttpStatus.BAD_REQUEST);
+		try {
+			Policy p = policyService.getPolicyById(id);
+			if(p != null)
+				return new ResponseEntity<Policy>(p, HttpStatus.OK);
+			else
+				return new ResponseEntity<Policy>(HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<Policy>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	@DeleteMapping("/api/policy/{id}")
 	public ResponseEntity<Policy> deletePolicyByPolicyNumber(@PathVariable int id){
-		Policy p = policyService.getPolicyById(id);
-		if(p != null)
-		{
-			policyService.deletePolicy(id);
-			return new ResponseEntity<Policy>(p, HttpStatus.OK);
+		try {
+			Policy p = policyService.getPolicyById(id);
+			if(p != null)
+			{
+				policyService.deletePolicy(id);
+				return new ResponseEntity<Policy>(p, HttpStatus.OK);
+			}
+				
+			else
+				return new ResponseEntity<Policy>(HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<Policy>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-			
-		else
-			return new ResponseEntity<Policy>(HttpStatus.NOT_FOUND);
 	}
 }

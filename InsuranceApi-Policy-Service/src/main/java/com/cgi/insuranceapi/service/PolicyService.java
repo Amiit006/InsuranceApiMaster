@@ -7,16 +7,16 @@ import com.cgi.insuranceapi.model.Policy;
 
 public interface PolicyService {
 
-	List<Policy> getAllPolicy();
+	List<Policy> getAllPolicy() throws Exception;
 
-	Policy getPolicyById(int id);
+	Policy getPolicyById(int id) throws Exception;
 	
-	Policy getPolicyByPolicyNumber(String policyNumber);
+	Policy getPolicyByPolicyNumber(String policyNumber) throws Exception;
 
-	void save(Policy policy);
+	void save(Policy policy) throws Exception;
 
-	Policy updatePolicy(int id, Policy policy);
+	Policy updatePolicy(int id, Policy policy) throws Exception;
 
-	void deletePolicy(int policyId);
+	void deletePolicy(int policyId) throws Exception;
 
 }

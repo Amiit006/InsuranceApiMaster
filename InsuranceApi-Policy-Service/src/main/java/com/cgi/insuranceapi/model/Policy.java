@@ -1,6 +1,6 @@
 package com.cgi.insuranceapi.model;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,14 +25,16 @@ public class Policy {
 	private int insuranceTypeId;
 	private String insuredName;
 	private int underwriterId;
-	private LocalTime effectiveDate;
-	private LocalTime expiryDate;
+	private LocalDateTime effectiveDate;
+	private LocalDateTime expiryDate;
 	private float amountInsured;
 	private boolean isActive;
 	private String createdBy;
-	private LocalTime createdDate;
+	@CreationTimestamp
+	private LocalDateTime createdDate;
 	private String modifiedBy;
-	private LocalTime modifiedDate;
+	@UpdateTimestamp
+	private LocalDateTime modifiedDate;
 
 	public Policy() {
 		super();
@@ -38,7 +42,7 @@ public class Policy {
 	}
 
 	public Policy(String policyNumber, int insuranceTypeId, String insuredName, int underwriterId,
-			LocalTime effectiveDate, LocalTime expiryDate, float amountInsured, boolean isActive, String createdBy,
+			LocalDateTime effectiveDate, LocalDateTime expiryDate, float amountInsured, boolean isActive, String createdBy,
 			String modifiedBy) {
 		super();
 		this.policyNumber = policyNumber;
@@ -50,9 +54,7 @@ public class Policy {
 		this.amountInsured = amountInsured;
 		this.isActive = isActive;
 		this.createdBy = createdBy;
-		setCreatedDate();
 		this.modifiedBy = modifiedBy;
-		setModifiedDate();
 	}
 
 	public String getPolicyNumber() {
@@ -87,20 +89,20 @@ public class Policy {
 		this.underwriterId = underwriterId;
 	}
 
-	public LocalTime getEffectiveDate() {
+	public LocalDateTime getEffectiveDate() {
 		return effectiveDate;
 	}
 
-	public void setEffectiveDate(LocalTime localTime) {
-		this.effectiveDate = localTime;
+	public void setEffectiveDate(LocalDateTime LocalDateTime) {
+		this.effectiveDate = LocalDateTime;
 	}
 
-	public LocalTime getExpiryDate() {
+	public LocalDateTime getExpiryDate() {
 		return expiryDate;
 	}
 
-	public void setExpiryDate(LocalTime localTime) {
-		this.expiryDate = localTime;
+	public void setExpiryDate(LocalDateTime LocalDateTime) {
+		this.expiryDate = LocalDateTime;
 	}
 
 	public float getAmountInsured() {
@@ -127,13 +129,13 @@ public class Policy {
 		this.createdBy = createdBy;
 	}
 
-	public LocalTime getCreatedDate() {
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate() {
-		this.createdDate = LocalTime.now();
-	}
+	/*public void setCreatedDate() {
+		this.createdDate = LocalDateTime.now();
+	}*/
 
 	public String getModifiedBy() {
 		return modifiedBy;
@@ -143,12 +145,12 @@ public class Policy {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public LocalTime getModifiedDate() {
+	public LocalDateTime getModifiedDate() {
 		return modifiedDate;
 	}
 
-	public void setModifiedDate() {
-		this.modifiedDate = LocalTime.now();
-	}
+	/*public void setModifiedDate() {
+		this.modifiedDate = LocalDateTime.now();
+	}*/
 
 }
