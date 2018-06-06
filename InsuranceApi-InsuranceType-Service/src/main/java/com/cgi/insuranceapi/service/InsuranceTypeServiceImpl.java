@@ -1,7 +1,6 @@
 package com.cgi.insuranceapi.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,10 @@ public class InsuranceTypeServiceImpl implements InsuranceTypeService {
 	
 	@Override
 	public List<InsuranceType> getAllInsuranceType() throws Exception{
-		return incTypeRepo.findAll();
+		List<InsuranceType> result = incTypeRepo.findAll();
+		if(result.size() > 0)
+			return result;
+		return null;
 	}
 	
 	
@@ -61,7 +63,7 @@ public class InsuranceTypeServiceImpl implements InsuranceTypeService {
 			it.setInsuranceTypeName(insuranceType.getInsuranceTypeName());
 			it.setModifiedBy(insuranceType.getModifiedBy());
 			incTypeRepo.save(it);
-			return insuranceType;	
+			return it;	
 		}
 	}
 	

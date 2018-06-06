@@ -29,7 +29,7 @@ public class PolicyController {
 			if(policyList.size() >0)
 				return new ResponseEntity<List<Policy>>(policyList, HttpStatus.OK);
 			else 
-				return new ResponseEntity<List<Policy>>(HttpStatus.NOT_FOUND);
+				return new ResponseEntity<List<Policy>>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			return new ResponseEntity<List<Policy>>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -71,7 +71,7 @@ public class PolicyController {
 				return new ResponseEntity<Policy>(policy, HttpStatus.CREATED);	
 			}
 			else
-				return new ResponseEntity<Policy>(policy, HttpStatus.CONFLICT);
+				return new ResponseEntity<Policy>(HttpStatus.CONFLICT);
 		} catch (Exception e) {
 			return new ResponseEntity<Policy>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -83,7 +83,7 @@ public class PolicyController {
 		try {
 			Policy p = policyService.getPolicyById(id);
 			if(p != null)
-				return new ResponseEntity<Policy>(p, HttpStatus.OK);
+				return new ResponseEntity<Policy>(policyService.updatePolicy(id, policy), HttpStatus.OK);
 			else
 				return new ResponseEntity<Policy>(HttpStatus.NOT_FOUND);
 		} catch (Exception e) {
@@ -98,7 +98,7 @@ public class PolicyController {
 			if(p != null)
 			{
 				policyService.deletePolicy(id);
-				return new ResponseEntity<Policy>(p, HttpStatus.OK);
+				return new ResponseEntity<Policy>(HttpStatus.OK);
 			}
 				
 			else

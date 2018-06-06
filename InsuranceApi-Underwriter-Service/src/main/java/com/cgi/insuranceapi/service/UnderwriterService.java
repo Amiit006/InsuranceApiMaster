@@ -10,11 +10,11 @@ public interface UnderwriterService {
 
 	Underwriter getUnderwriterById(int id) throws Exception;
 
-	void deleteUnderwriter(int id) throws Exception;
-
+	Underwriter getUnderwriterByName(String name) throws Exception;
+	
 	Underwriter updateUnderwriter(int id, Underwriter underwriter) throws Exception;
 
 	Underwriter saveUnderwriter(Underwriter underwriter) throws Exception;
 
-	Underwriter getUnderwriterByName(String name) throws Exception;
+	void deleteUnderwriter(int id) throws Exception;
 }

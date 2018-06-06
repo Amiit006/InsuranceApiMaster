@@ -16,12 +16,15 @@ public class ClaimServiceImpl implements ClaimService{
 	
 	
 	@Override
-	public List<Claim> getAllClaims(){
-		return claimRepo.findAll();
+	public List<Claim> getAllClaims() throws Exception{
+		List<Claim> result = claimRepo.findAll();
+		if(result.size() > 0)
+			return result;
+		return null;
 	}
 	
 	@Override
-	public Claim getClaimById(int id){
+	public Claim getClaimById(int id) throws Exception{
 		Claim c = claimRepo.findById(id);
 		
 		if(c != null)
@@ -30,9 +33,9 @@ public class ClaimServiceImpl implements ClaimService{
 	}
 	
 	@Override
-	public Claim getClaimByPolicyId(int id){
-		Claim c = claimRepo.findByPolicyId(id);
-		if(c != null)
+	public List<Claim> getClaimByPolicyId(int id) throws Exception{
+		List<Claim> c = claimRepo.findByPolicyId(id);
+		if(c.size() > 0)
 			return c;
 		return null;
 	}
@@ -46,12 +49,12 @@ public class ClaimServiceImpl implements ClaimService{
 	}
 	
 	@Override
-	public void save(Claim claim) {
+	public void save(Claim claim) throws Exception {
 		claimRepo.save(claim);
 	}
 
 	@Override
-	public Claim updateClaim(int id, Claim claim) {
+	public Claim updateClaim(int id, Claim claim) throws Exception {
 		Claim c = claimRepo.findById(id);
 		
 		if(c!= null) {
@@ -68,7 +71,7 @@ public class ClaimServiceImpl implements ClaimService{
 	}
 	
 	@Override
-	public void deleteClaim(int id) {
+	public void deleteClaim(int id) throws Exception {
 		Claim c = claimRepo.findById(id);
 		if(c!= null)
 			claimRepo.deleteById(id);

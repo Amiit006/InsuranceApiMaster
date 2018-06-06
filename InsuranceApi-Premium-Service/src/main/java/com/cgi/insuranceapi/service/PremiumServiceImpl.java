@@ -33,9 +33,9 @@ public class PremiumServiceImpl implements PremiumService {
 	}
 
 	@Override
-	public Premium getPremiumByPolicyId(int id) throws Exception{
-		Premium p = premiumRepo.findByPolicyId(id);
-		if (p != null)
+	public List<Premium> getPremiumByPolicyId(int id) throws Exception{
+		List<Premium> p = premiumRepo.findByPolicyId(id);
+		if (p.size() > 0)
 			return p;
 		else
 			return null; 

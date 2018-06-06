@@ -25,72 +25,106 @@ public class ClaimController {
 	@GetMapping("/api/claim")
 	public ResponseEntity<List<Claim>> getAllClaims() {
 
-		List<Claim> result = claimsService.getAllClaims();
-		if (result == null) {
-			return new ResponseEntity<List<Claim>>(HttpStatus.NO_CONTENT);
-		} else
-			return new ResponseEntity<List<Claim>>(result, HttpStatus.OK);
+		try {
+			List<Claim> result = claimsService.getAllClaims();
+			if (result == null) {
+				return new ResponseEntity<List<Claim>>(HttpStatus.NO_CONTENT);
+			} else
+				return new ResponseEntity<List<Claim>>(result, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<List<Claim>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@GetMapping("/api/claim/{id}")
 	public ResponseEntity<Claim> getClaimById(@PathVariable int id) {
-		Claim c = claimsService.getClaimById(id);
-		if (c == null)
-			return new ResponseEntity<Claim>(HttpStatus.NOT_FOUND);
-		else
-			return new ResponseEntity<Claim>(c, HttpStatus.OK);
+		try {
+			Claim c = claimsService.getClaimById(id);
+			if (c == null)
+				return new ResponseEntity<Claim>(HttpStatus.NOT_FOUND);
+			else
+				return new ResponseEntity<Claim>(c, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<Claim>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@GetMapping("/api/claim/policy/{id}")
-	public ResponseEntity<Claim> getClaimByPolicyId(@PathVariable int id) {
-		Claim c = claimsService.getClaimByPolicyId(id);
-		if (c == null)
-			return new ResponseEntity<Claim>(HttpStatus.NOT_FOUND);
-		else
-			return new ResponseEntity<Claim>(c, HttpStatus.FOUND);
+	public ResponseEntity<List<Claim>> getClaimByPolicyId(@PathVariable int id) {
+		try {
+			List<Claim> c = claimsService.getClaimByPolicyId(id);
+			if (c == null)
+				return new ResponseEntity<List<Claim>>(HttpStatus.NOT_FOUND);
+			else
+				return new ResponseEntity<List<Claim>>(c, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<List<Claim>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@GetMapping("/api/claim/claimref/{claimRef}")
 	public ResponseEntity<Claim> getClaimByClaimRef(@PathVariable String claimRef) {
-		Claim c = claimsService.getClaimByClaimRef(claimRef);
-		if (c == null)
-			return new ResponseEntity<Claim>(HttpStatus.NOT_FOUND);
-		else
-			return new ResponseEntity<Claim>(c, HttpStatus.FOUND);
+		try {
+			Claim c = claimsService.getClaimByClaimRef(claimRef);
+			if (c == null)
+				return new ResponseEntity<Claim>(HttpStatus.NOT_FOUND);
+			else
+				return new ResponseEntity<Claim>(c, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<Claim>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@PostMapping("/api/claim")
 	public ResponseEntity<String> saveClaim(@RequestBody Claim claim) {
-		Claim c = claimsService.getClaimById(claim.getId());
-		if(c != null) {
-			claimsService.save(claim);
-			return new ResponseEntity<String>("Saved successfully", HttpStatus.CREATED);	
+		try {
+//			Claim c = claimsService.getClaimById(claim.getId());
+			Claim c = claimsService.getClaimByClaimRef(claim.getClaimReference());
+			if(c == null) {
+				claimsService.save(claim);
+				return new ResponseEntity<String>("Saved successfully", HttpStatus.CREATED);	
+			}
+			return new ResponseEntity<String>("Conflict", HttpStatus.CONFLICT);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<String>("Not Found", HttpStatus.NOT_FOUND);
 	}
 
 	@PutMapping("/api/claim/{id}")
 	public ResponseEntity<Claim> updateClaim(@PathVariable int id, @RequestBody Claim claim) {
-		Claim c = claimsService.getClaimById(id);
-		if(c != null)
-		{
-			c = claimsService.updateClaim(id, claim);
-			return new ResponseEntity<Claim>(c, HttpStatus.OK);	
+		try {
+			Claim c = claimsService.getClaimById(id);
+			if(claimsService.getClaimByClaimRef(claim.getClaimReference()) == null) {
+				if(c != null)
+				{
+					c = claimsService.updateClaim(id, claim);
+					return new ResponseEntity<Claim>(c, HttpStatus.OK);	
+				}
+				else
+					return new ResponseEntity<Claim>(HttpStatus.NOT_FOUND);	
+			}
+			else
+				return new ResponseEntity<Claim>(HttpStatus.CONFLICT);
+			
+		} catch (Exception e) {
+			return new ResponseEntity<Claim>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		else
-			return new ResponseEntity<Claim>(HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/api/claim/{id}")
 	public ResponseEntity<String> deleteClaim(@PathVariable int id) {
-		Claim c = claimsService.getClaimById(id);
-		if(c != null)
-		{
-			claimsService.deleteClaim(id);
-			return new ResponseEntity<String>("Deleted successfully", HttpStatus.OK);
+		try {
+			Claim c = claimsService.getClaimById(id);
+			if(c != null)
+			{
+				claimsService.deleteClaim(id);
+				return new ResponseEntity<String>("Deleted successfully", HttpStatus.OK);
+			}
+			else
+				return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		else
-			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 	}
 
 }

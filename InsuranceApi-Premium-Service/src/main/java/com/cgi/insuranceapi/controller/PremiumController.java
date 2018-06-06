@@ -29,7 +29,7 @@ public class PremiumController {
 			if (premiumList != null)
 				return new ResponseEntity<List<Premium>>(premiumList, HttpStatus.OK);
 			else
-				return new ResponseEntity<List<Premium>>(HttpStatus.NOT_FOUND);
+				return new ResponseEntity<List<Premium>>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<List<Premium>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -50,15 +50,15 @@ public class PremiumController {
 	}
 
 	@GetMapping("/api/premium/policy/{id}")
-	public ResponseEntity<Premium> getPremiumByPolicyId(@PathVariable int id) {
+	public ResponseEntity<List<Premium>> getPremiumByPolicyId(@PathVariable int id) {
 		try {
-			Premium p = premiumService.getPremiumByPolicyId(id);
+			List<Premium> p = premiumService.getPremiumByPolicyId(id);
 			if (p != null)
-				return new ResponseEntity<Premium>(p, HttpStatus.OK);
+				return new ResponseEntity<List<Premium>>(p, HttpStatus.OK);
 			else
-				return new ResponseEntity<Premium>(HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<List<Premium>>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
-			return new ResponseEntity<Premium>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<Premium>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -77,8 +77,7 @@ public class PremiumController {
 		try {
 			Premium p = premiumService.getPremiumById(id);
 			if (p != null) {
-				premiumService.updatePremium(id, premium);
-				return new ResponseEntity<Premium>(premium, HttpStatus.OK);
+				return new ResponseEntity<Premium>(premiumService.updatePremium(id, premium), HttpStatus.OK);
 			} else
 				return new ResponseEntity<Premium>(HttpStatus.NOT_FOUND);
 		} catch (Exception e) {
@@ -97,7 +96,6 @@ public class PremiumController {
 			else
 				return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		

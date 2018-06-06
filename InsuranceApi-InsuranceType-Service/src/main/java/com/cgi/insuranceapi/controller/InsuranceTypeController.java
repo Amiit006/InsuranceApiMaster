@@ -28,11 +28,12 @@ public class InsuranceTypeController {
 	@GetMapping("/api/inctype")
 	public ResponseEntity<List<InsuranceType>> getAllInsuranceType(){
 		try {
-			List<InsuranceType> allItemList = incTypeService.getAllInsuranceType();
-			if(allItemList.size() == 0) {
-				return new ResponseEntity<List<InsuranceType>>(allItemList, HttpStatus.OK);	
+			List<InsuranceType> result = incTypeService.getAllInsuranceType();
+			if(result != null ) {
+				return new ResponseEntity<List<InsuranceType>>(result, HttpStatus.OK);	
 			}
-			return new ResponseEntity<List<InsuranceType>>(HttpStatus.NOT_FOUND);
+			else
+				return new ResponseEntity<List<InsuranceType>>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<List<InsuranceType>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -67,7 +68,12 @@ public class InsuranceTypeController {
 	@PostMapping("/api/inctype")
 	public ResponseEntity<String> saveInsuranceType(@RequestBody InsuranceType insuranceType){
 		try {
-			return new ResponseEntity<String>(incTypeService.saveInsuranceType(insuranceType), HttpStatus.CREATED);	
+			InsuranceType it = incTypeService.getInsuranceTypeByName(insuranceType.getInsuranceTypeName());
+			if(it == null) {
+				return new ResponseEntity<String>(incTypeService.saveInsuranceType(insuranceType), HttpStatus.CREATED);	
+			}
+			else
+				return new ResponseEntity<String>(HttpStatus.CONFLICT);
 		}catch(Exception ex) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}

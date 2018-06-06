@@ -29,7 +29,7 @@ public class UnderwriterController {
 			if (result != null)
 				return new ResponseEntity<List<Underwriter>>(result, HttpStatus.OK);
 			else
-				return new ResponseEntity<List<Underwriter>>(HttpStatus.NOT_FOUND);
+				return new ResponseEntity<List<Underwriter>>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<List<Underwriter>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -65,11 +65,13 @@ public class UnderwriterController {
 	@PostMapping("/api/uw")
 	public ResponseEntity<Underwriter> saveUnderwriter(@RequestBody Underwriter undwriter) {
 		try {
-			Underwriter result = uwService.saveUnderwriter(undwriter);
-			if (result != null)
-				return new ResponseEntity<Underwriter>(result, HttpStatus.OK);
+			Underwriter result = uwService.getUnderwriterByName(undwriter.getUnderwriterName());
+			if (result == null) {
+				return new ResponseEntity<Underwriter>(uwService.saveUnderwriter(undwriter), HttpStatus.OK);	
+			}
+			
 			else
-				return new ResponseEntity<Underwriter>(HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<Underwriter>(HttpStatus.CONFLICT);
 		} catch (Exception e) {
 			return new ResponseEntity<Underwriter>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -79,11 +81,12 @@ public class UnderwriterController {
 	public ResponseEntity<Underwriter> updateUnderwriter(@PathVariable int id, @RequestBody Underwriter undwriter) {
 		try {
 			Underwriter result = uwService.getUnderwriterById(id);
-			if(result != null) {
+			Underwriter result2 = uwService.getUnderwriterByName(undwriter.getUnderwriterName());
+			if(result != null && result2 == null) {
 				return new ResponseEntity<Underwriter>(uwService.updateUnderwriter(id, undwriter), HttpStatus.OK);
 			}	
 			else
-				return new ResponseEntity<Underwriter>(HttpStatus.NOT_FOUND);
+				return new ResponseEntity<Underwriter>(HttpStatus.CONFLICT);
 		} catch (Exception e) {
 			return new ResponseEntity<Underwriter>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}

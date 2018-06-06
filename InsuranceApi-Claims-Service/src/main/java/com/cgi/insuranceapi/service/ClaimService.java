@@ -6,18 +6,18 @@ import com.cgi.insuranceapi.model.Claim;
 
 public interface ClaimService {
 
-	List<Claim> getAllClaims();
+	List<Claim> getAllClaims() throws Exception;
 
-	void save(Claim claim);
+	void save(Claim claim) throws Exception;
 
-	Claim getClaimByClaimRef(String claimRef);
+	Claim getClaimByClaimRef(String claimRef) throws Exception;
 
-	Claim getClaimById(int id);
+	Claim getClaimById(int id) throws Exception;
 
-	Claim getClaimByPolicyId(int id);
+	List<Claim> getClaimByPolicyId(int id) throws Exception;
 
-	Claim updateClaim(int id, Claim claim);
+	Claim updateClaim(int id, Claim claim) throws Exception;
 
-	void deleteClaim(int id);
+	void deleteClaim(int id) throws Exception;
 
 }

@@ -17,7 +17,7 @@ public class UnderwriterServiceImpl implements UnderwriterService {
 	@Override
 	public List<Underwriter> getAllUnderwriter() throws Exception{
 		List<Underwriter> result = uwRepo.findAll();
-		if(result != null)
+		if(result.size() > 0)
 			return result;
 		return null;
 	}
@@ -40,13 +40,13 @@ public class UnderwriterServiceImpl implements UnderwriterService {
 	
 	@Override
 	public Underwriter saveUnderwriter(Underwriter underwriter) throws Exception{
-		Underwriter und = uwRepo.findByUnderwriterName(underwriter.getUnderwriterName());
-		if(und != null)
-			return null;
-		else {
+//		Underwriter und = uwRepo.findByUnderwriterName(underwriter.getUnderwriterName());
+//		if(und != null)
+//			return null;
+//		else {
 			uwRepo.save(underwriter);
 			return underwriter;
-		}
+//		}
 	}
 	
 	@Override

@@ -12,7 +12,7 @@ public interface PremiumService {
 
 	Premium getPremiumById(int id) throws Exception;
 
-	Premium getPremiumByPolicyId(int id) throws Exception;
+	List<Premium> getPremiumByPolicyId(int id) throws Exception;
 
 	Premium updatePremium(int id, Premium premium) throws Exception;
 

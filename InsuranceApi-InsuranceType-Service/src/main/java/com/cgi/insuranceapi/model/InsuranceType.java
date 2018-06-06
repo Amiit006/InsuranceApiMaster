@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name = "Insurance", uniqueConstraints = { @UniqueConstraint(columnNames = { "insuranceTypeName" }) })
+@Table(name = "InsuranceType", uniqueConstraints = { @UniqueConstraint(columnNames = { "insuranceTypeName" }) })
 public class InsuranceType {
 
 	@Id
